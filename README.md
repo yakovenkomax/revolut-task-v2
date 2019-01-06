@@ -1,68 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Revolut task v2
 
-## Available Scripts
+Run `yarn start` to start development server.
 
-In the project directory, you can run:
+To start a static server run:
+```
+yarn add -g serve
+serve -s build
+```
 
-### `npm start`
+'* to succesfully pull currency rates disable CORS in your browser:
+`open -a Google\ Chrome --args --disable-web-security --user-data-dir`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Description
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Open the current Revolut app, on either iOS or Android, and navigate to the exchange screen.
+If the app is not available in your country you can observe how application works in video [https://youtu.be/c0zPSiKYipc?t=29s](https://youtu.be/c0zPSiKYipc?t=29s). (Exchange screen is on the 29th second of the video)
+Implement *functionality* of this screen in your own custom web widget using FX rates from either source:
+a) [http://www.ecb.int/stats/exchange/eurofxref/html/index.en.html#dev](http://www.ecb.int/stats/exchange/eurofxref/html/index.en.html#dev)
+b) [https://openexchangerates.org/](https://openexchangerates.org/)
+c) Your preferred source of FX rates
 
-### `npm test`
+## Explicit Requirements
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Your app should poll the endpoint every 10 seconds to get the latest rates for GBP, EUR and USD. (The API provides close of day FX rates. Although we expect you to refresh the rate every 10s, we do not expect the rate to change every 10s as most free rate sources won’t provide live rates)
 
-### `npm run build`
+## Implicit Requirements
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The widget must work and produce correct results.
+The code produced is expected to be of high standard.
+You should implement as many features from the model exchange screen as possible.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Please put your work on Bitbucket or Github.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Other expectations
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Tech stack for application: React (Preact) and Redux (or Alternatives) 
+The application should be bug-free. Test your app before write to us that it is ready :)
+Test your application with Jest (+Enzyme)
