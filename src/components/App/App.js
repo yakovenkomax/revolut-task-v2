@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CurrencySelector from '../CurrencySelector/CurrencySelector';
 import classnames from 'classnames';
+
+import ratesActions from '../../actions/rates';
+
+import { AVAILABLE_CURRENCIES } from '../../constants/currency';
 
 import './App.css';
 import logo from '../../logo.svg';
 
-const ACCESS_KEY = '4203449fcaa4f52410c78cb9b19bc47a';
-
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
@@ -20,7 +23,6 @@ export default class App extends Component {
         USD: 12871600,
         EUR: 8609400
       },
-      availableCurrencies: ['USD', 'EUR', 'GBP'],
       rates: {},
       amountFrom: '',
       amountTo: '',
@@ -29,17 +31,19 @@ export default class App extends Component {
     }
 
     // Update rates every 10 seconds
-    setInterval(this.getRates, 10000);
+    // setInterval(getRates, 10000);
   }
 
   componentDidMount() {
     const { wallet } = this.state;
+    const { onMount } = this.props;
 
     // Set default currencyFrom value
     this.setState({ currencyFrom: Object.keys(wallet)[0] });
 
     // Update rates
-    this.getRates();
+    // getRates();
+    onMount();
   }
 
   componentDidUpdate() {
@@ -54,31 +58,6 @@ export default class App extends Component {
     if ((currencyTo === '' || currencyTo === currencyFrom) && rates.hasOwnProperty(currencyFrom) === true) {
       this.setState({ currencyTo: Object.keys(rates[currencyFrom])[0] });
     }
-  }
-
-  getRates = (base) => {
-    const { wallet, availableCurrencies } = this.state;
-
-    if (typeof base !== 'undefined') {
-      fetchData(base, this.updateRates);
-    } else {
-      Object.keys(wallet).forEach((base) => {
-        fetchData(base, this.updateRates);
-      })
-    }
-
-    function fetchData(base, callback) {
-      fetch(`http://data.fixer.io/api/latest?access_key=${ACCESS_KEY}&base=${base}&symbols=${availableCurrencies.join(',')}`)
-        .then((responseJson) => responseJson.json())
-        .then((responseObject) => {
-          callback(responseObject);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-
-    console.log('Get rates.');
   }
 
   updateRates = (ratesObject) => {
@@ -121,7 +100,7 @@ export default class App extends Component {
     // Create wallet entry for new currency and get rates for it
     if (wallet.hasOwnProperty(currencyTo) === false) {
       wallet[currencyTo] = 0;
-      this.getRates(currencyTo);
+      // getRates(currencyTo);
     }
 
     // Perform wallet changes
@@ -265,3 +244,17 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = (state, props) => {
+  return {};
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onMount() {
+      dispatch(ratesActions.update(AVAILABLE_CURRENCIES));
+    },
+  };
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(App);
