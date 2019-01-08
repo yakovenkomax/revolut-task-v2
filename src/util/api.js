@@ -1,13 +1,21 @@
-import { AVAILABLE_CURRENCIES } from '../constants/currency';
+import convert from 'xml-js';
 
-const ACCESS_KEY = '4203449fcaa4f52410c78cb9b19bc47a';
-
-export const fetchRates = async (currency) => {
+export const fetchRates = async () => {
   try {
-    const resultJSON = await fetch(`http://data.fixer.io/api/latest?access_key=${ACCESS_KEY}&base=${currency}&symbols=${AVAILABLE_CURRENCIES.join(',')}`);
-    const resultObject = resultJSON.json();
+    const result = await fetch('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml');
+    const resultXML = await result.text();
+    const resultObject = convert.xml2js(resultXML);
+    const ratesObjectsArray = resultObject.elements[0].elements[2].elements[0].elements;
+    const rates = ratesObjectsArray.reduce((prev, curr) => {
+      const key = curr.attributes.currency;
+      const value = curr.attributes.rate;
 
-    return resultObject;
+      prev[key] = value;
+
+      return prev;
+    }, {})
+
+    return rates;
   } catch(err) {
     console.error(err);
   }

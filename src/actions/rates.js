@@ -1,18 +1,15 @@
 import actions from '../constants/actions';
 import { fetchRates } from '../util/api';
 
-const update = (currencyList) => (dispatch, getState) => {
-  currencyList.forEach(async (currency) => {
-    const rates = await fetchRates(currency);
+const update = () => async (dispatch, getState) => {
+  const rates = await fetchRates();
 
-    dispatch({
-      type: actions.RATES_UPDATE,
-      payload: {
-        currency,
-        rates,
-      },
-    });
-  })
+  dispatch({
+    type: actions.RATES_UPDATE,
+    payload: {
+      rates,
+    },
+  });
 };
 
 export default {

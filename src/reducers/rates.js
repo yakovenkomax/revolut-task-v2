@@ -1,31 +1,18 @@
 import actions from '../constants/actions';
 
 export const initialRatesState = {
-  usd: {
-    gbp: null,
-    eur: null,
-  },
-  gbp: {
-    usd: null,
-    eur: null,
-  },
-  eur: {
-    usd: null,
-    gbp: null,
-  },
+  EUR: "1",
 }
 
-export default function fetch(state = initialRatesState, action) {
-  let newState;
-
+export default (state = initialRatesState, action) => {
   switch (action.type) {
-    case actions.RATES_FETCH: {
-      const { currency, rates } = action.params;
-      newState = { ...state };
+    case actions.RATES_UPDATE: {
+      const { rates } = action.payload;
 
-      newState.rates[currency] = rates;
-
-      return newState;
+      return {
+        ...state,
+        ...rates,
+      };
     }
 
     default:

@@ -13,7 +13,7 @@ export const initialWalletState = {
   ...FAKE_WALLET,
 }
 
-export default function exchange(state = initialWalletState, action) {
+export default (state = initialWalletState, action) => {
   let newState;
 
   switch (action.type) {
@@ -22,8 +22,8 @@ export default function exchange(state = initialWalletState, action) {
 
       newState = { ...state };
 
-      newState.wallet[currencyFrom] = newState.wallet[currencyFrom] - amount;
-      newState.wallet[currencyTo] = newState.wallet[currencyTo] + amount * rate;
+      newState[currencyFrom] = newState[currencyFrom] - amount;
+      newState[currencyTo] = newState[currencyTo] + amount * rate;
 
       return newState;
     }

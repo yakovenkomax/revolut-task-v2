@@ -5,8 +5,6 @@ import classnames from 'classnames';
 
 import ratesActions from '../../actions/rates';
 
-import { AVAILABLE_CURRENCIES } from '../../constants/currency';
-
 import './App.css';
 import logo from '../../logo.svg';
 
@@ -252,7 +250,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     onMount() {
-      dispatch(ratesActions.update(AVAILABLE_CURRENCIES));
+      dispatch(ratesActions.update());
     },
   };
 }
