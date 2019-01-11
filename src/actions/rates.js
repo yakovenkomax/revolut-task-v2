@@ -1,7 +1,7 @@
 import actions from '../constants/actions';
 import { fetchRates } from '../util/api';
 
-const update = () => async (dispatch, getState) => {
+const update = () => async (dispatch) => {
   const rates = await fetchRates();
 
   dispatch({

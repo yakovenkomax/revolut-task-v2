@@ -21,7 +21,7 @@ class ExchangeTo extends Component {
     const { currencyTo, amount, rate } = this.props;
     const value = (amount * rate);
 
-    if (!amount) {
+    if (!amount.toNumber()) {
       return null;
     }
 

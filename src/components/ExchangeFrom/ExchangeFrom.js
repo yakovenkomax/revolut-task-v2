@@ -18,7 +18,7 @@ class ExchangeFrom extends Component {
 
   onAmountInput = (event) => {
     const { dispatch } = this.props;
-    const amount = event.target.value;
+    const amount = event.target.value || 0;
 
     dispatch(exchangeActions.updateExchangeSettings({ amount }));
   };
@@ -28,7 +28,7 @@ class ExchangeFrom extends Component {
 
     return (
       <input
-        value={ amount || '' }
+        value={ amount.toNumber() || '' }
         onChange={ this.onAmountInput }
       />
     );

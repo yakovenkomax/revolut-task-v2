@@ -7,8 +7,6 @@ class CurrencySelector extends Component {
   onChange = ({ item: index }) => {
     const { onChange, currencyList } = this.props;
 
-    console.log(currencyList[index]);
-
     if (onChange) {
       onChange(currencyList[index]);
     }

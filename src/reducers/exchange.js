@@ -1,9 +1,10 @@
+import { Decimal } from 'decimal.js';
 import actions from '../constants/actions';
 
 export const initialExchangeState = {
   currencyFrom: '',
   currencyTo: '',
-  amount: 0,
+  amount: new Decimal(0),
 };
 
 export default (state = initialExchangeState, action) => {
@@ -23,8 +24,8 @@ export default (state = initialExchangeState, action) => {
         newState.currencyTo = currencyTo;
       }
 
-      if (amount) {
-        newState.amount = amount;
+      if (typeof amount !== 'undefined') {
+        newState.amount = new Decimal(amount);
       }
 
       return newState;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import FormattedRate from '../FormattedRate/FormattedRate';
+import FormattedCurrency from '../FormattedCurrency/FormattedCurrency';
 
 class ExchangeRate extends Component {
   render() {
@@ -8,9 +8,9 @@ class ExchangeRate extends Component {
 
     return (
       <div>
-        <FormattedRate currency={currencyFrom} value={1} />
+        <FormattedCurrency currency={currencyFrom} value={1} precision={0} />
         =
-        <FormattedRate currency={currencyTo} value={rate} precision={4} />
+        <FormattedCurrency currency={currencyTo} value={rate} precision={4} />
       </div>
     );
   }
