@@ -1,24 +1,24 @@
 import actions from '../constants/actions';
 
 const FAKE_WALLET = {
-  usd: 1234000,
-  gbp: 8765430,
-  eur: 5678900,
-}
+  USD: 1234000,
+  GBP: 8765430,
+  EUR: 5678900,
+};
 
 export const initialWalletState = {
-  usd: 0,
-  gbp: 0,
-  eur: 0,
+  USD: 0,
+  GBP: 0,
+  EUR: 0,
   ...FAKE_WALLET,
-}
+};
 
 export default (state = initialWalletState, action) => {
   let newState;
 
   switch (action.type) {
     case actions.WALLET_EXCHANGE: {
-      const { currencyFrom, currencyTo, amount, rate } = action.params;
+      const { currencyFrom, currencyTo, amount, rate } = action.payload;
 
       newState = { ...state };
 

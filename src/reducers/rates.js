@@ -2,7 +2,7 @@ import actions from '../constants/actions';
 
 export const initialRatesState = {
   EUR: "1",
-}
+};
 
 export default (state = initialRatesState, action) => {
   switch (action.type) {

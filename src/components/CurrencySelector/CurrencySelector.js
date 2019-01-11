@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
+import AliceCarousel from 'react-alice-carousel'
+import 'react-alice-carousel/lib/alice-carousel.css'
+import CurrencyDisplay from '../CurrencyDisplay/CurrencyDisplay';
 
-import './CurrencySelector.css';
+class CurrencySelector extends Component {
+  onChange = ({ item: index }) => {
+    const { onChange, currencyList } = this.props;
 
-export default class App extends Component {
-  handleChange = (event) => {
-    const { value } = event.target;
+    console.log(currencyList[index]);
 
-    this.props.onSelect(value);
-  }
+    if (onChange) {
+      onChange(currencyList[index]);
+    }
+  };
 
   render() {
-    const { isDisabled, currencyList, selectedValue, tabIndex } = this.props;
+    const { currencyList, value, wallet } = this.props;
+    const startIndex = currencyList.indexOf(value);
 
     return (
-      <select
-        className="select"
-        value={ selectedValue }
-        onChange={ this.handleChange }
-        disabled={ isDisabled }
-        tabIndex={ tabIndex }>
-        { currencyList.map((currency) =>
-          <option key={ currency } value={ currency }>{ currency }</option>
-        )}
-      </select>
+      <div className="CurrencySelector">
+        <AliceCarousel
+          infinite
+          buttonsDisabled
+          mouseDragEnabled
+          keysControlDisabled
+          startIndex={startIndex}
+          responsive={ {0: { items: 1 }} }
+          onSlideChanged={this.onChange}
+        >
+          { currencyList.map((currency) =>
+            <CurrencyDisplay key={currency} currency={currency} value={wallet[currency]}/>
+          )}
+        </AliceCarousel>
+      </div>
     );
   }
 }
+
+export default CurrencySelector;

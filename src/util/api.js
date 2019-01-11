@@ -13,10 +13,10 @@ export const fetchRates = async () => {
       prev[key] = value;
 
       return prev;
-    }, {})
+    }, {});
 
     return rates;
   } catch(err) {
     console.error(err);
   }
-}
+};
