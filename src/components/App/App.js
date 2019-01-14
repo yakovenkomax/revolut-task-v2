@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import classnames from 'classnames';
 import ExchangeRate from '../ExchangeRate/ExchangeRate';
 import ExchangeButton from '../ExchangeButton/ExchangeButton';
 import ExchangeFrom from '../ExchangeFrom/ExchangeFrom';
@@ -8,55 +7,31 @@ import ExchangeTo from '../ExchangeTo/ExchangeTo';
 
 import ratesActions from '../../actions/rates';
 
-import './App.css';
+import s from './App.module.css';
 
 class App extends Component {
   componentDidMount() {
-    const { dispatch } = this.props;
-
-    dispatch(ratesActions.update());
+    this.props.dispatch(ratesActions.update());
   }
-
-  updateRates = (ratesObject) => {
-    let { rates } = this.state;
-
-    rates[ratesObject.base] = ratesObject.rates;
-    this.setState({ rates },
-      this.updateAmountTo);
-
-    console.log('Rates update:', rates);
-  };
-
-  // amountToNumber(amount) {
-  //   return amount / 10000;
-  // }
-
-  // amountToString(amount) {
-  //   return (amount / 10000).toFixed(2).replace('.00', '');
-  // }
-
-  // valueToAmount(value) {
-  //   return value === '' ? '': parseInt(parseFloat(value.toString().replace(',', '.')) * 10000, 10);
-  // }
 
   render() {
     return (
-      <div className="app">
-        <header className="header">
-          <div className="header__left">
+      <div className={s.root}>
+        <header className={s.header}>
+          <div className={s.headerLeft}>
           </div>
-          <div className="header__center">
+          <div className={s.headerCenter}>
             <ExchangeRate />
           </div>
-          <div className="header__right">
+          <div className={s.headerRight}>
             <ExchangeButton />
           </div>
         </header>
-        <main className="main">
-          <div className="exchange">
+        <main className={s.main}>
+          <div className={s.exchange}>
             <ExchangeFrom />
           </div>
-          <div className="exchange">
+          <div className={s.exchange}>
             <ExchangeTo />
           </div>
         </main>
@@ -65,8 +40,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  return {};
-}
-
-export default connect (mapStateToProps)(App);
+export default connect()(App);

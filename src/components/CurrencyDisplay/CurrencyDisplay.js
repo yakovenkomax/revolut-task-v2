@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import FormattedCurrency from '../FormattedCurrency/FormattedCurrency';
 
+import s from './CurrencyDisplay.module.css';
+
 class CurrencyDisplay extends Component {
   render() {
     const { currency, value } = this.props;
@@ -10,7 +12,7 @@ class CurrencyDisplay extends Component {
     }
 
     return (
-      <div className="CurrencyDisplay">
+      <div className={s.root}>
         <div>
           currency: {currency}
         </div>

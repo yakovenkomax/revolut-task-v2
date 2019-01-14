@@ -1,0 +1,31 @@
+.root {
+  background: radial-gradient(var(--color-blue-light), var(--color-blue-dark));
+  padding: 20px;
+  border: 1px solid gray;
+}
+
+.header {
+  padding: 20px;
+  border: 1px solid gray;
+}
+
+.headerLeft {
+
+}
+
+.headerCenter {
+
+}
+
+.headerRight {
+
+}
+
+.main {
+
+}
+
+.exchange {
+  padding: 20px;
+  border: 1px solid gray;
+}

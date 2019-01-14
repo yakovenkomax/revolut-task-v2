@@ -3,6 +3,8 @@ import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 import CurrencyDisplay from '../CurrencyDisplay/CurrencyDisplay';
 
+import s from './CurrencySelector.module.css';
+
 class CurrencySelector extends Component {
   onChange = ({ item: index }) => {
     const { onChange, currencyList } = this.props;
@@ -17,7 +19,7 @@ class CurrencySelector extends Component {
     const startIndex = currencyList.indexOf(value);
 
     return (
-      <div className="CurrencySelector">
+      <div className={s.root}>
         <AliceCarousel
           infinite
           buttonsDisabled
