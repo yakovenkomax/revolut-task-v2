@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FormattedCurrency from '../FormattedCurrency/FormattedCurrency';
 
+import s from './ExchangeRate.module.css';
+
 class ExchangeRate extends Component {
   render() {
     const { currencyFrom, currencyTo, rate } = this.props;
 
     return (
-      <div>
+      <div className={s.root}>
         <FormattedCurrency currency={currencyFrom} value={1} precision={0} />
         =
         <FormattedCurrency currency={currencyTo} value={rate} precision={4} />

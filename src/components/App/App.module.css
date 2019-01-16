@@ -1,24 +1,31 @@
 .root {
+  width: 350px;
+  margin: auto;
   background: radial-gradient(var(--color-blue-light), var(--color-blue-dark));
-  padding: 20px;
-  border: 1px solid gray;
+  box-shadow: 0 15px 15px var(--color-black-5), 0 0 30px var(--color-black-33);
 }
 
 .header {
-  padding: 20px;
-  border: 1px solid gray;
+  display: flex;
+  align-items: center;
+  padding: var(--qs-4x) var(--qs-2x);
 }
 
 .headerLeft {
-
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .headerCenter {
-
+  flex: 1;
+  display: flex;
 }
 
 .headerRight {
-
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .main {
@@ -27,5 +34,4 @@
 
 .exchange {
   padding: 20px;
-  border: 1px solid gray;
 }
