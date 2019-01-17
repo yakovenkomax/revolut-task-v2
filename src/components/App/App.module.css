@@ -33,5 +33,5 @@
 }
 
 .exchange {
-  padding: 20px;
+  padding: var(--qs-5x) var(--qs-9x);
 }

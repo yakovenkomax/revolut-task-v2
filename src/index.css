@@ -4,6 +4,12 @@
   --qs-2x: calc(var(--quant-size) * 2);
   --qs-3x: calc(var(--quant-size) * 3);
   --qs-4x: calc(var(--quant-size) * 4);
+  --qs-5x: calc(var(--quant-size) * 5);
+  --qs-6x: calc(var(--quant-size) * 6);
+  --qs-7x: calc(var(--quant-size) * 7);
+  --qs-8x: calc(var(--quant-size) * 8);
+  --qs-9x: calc(var(--quant-size) * 9);
+  --qs-10x: calc(var(--quant-size) * 10);
 
   --color-black: #0f0f11;
   --color-black-5: rgba(15, 15, 17, .05);
@@ -16,7 +22,7 @@
   --font-size-s: 13px;
   --font-size-m: 15px;
   --font-size-lg: 20px;
-  --font-size-xl: 25px;
+  --font-size-xl: 40px;
 
   --border-radius: 7px;
 }

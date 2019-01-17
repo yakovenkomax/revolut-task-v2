@@ -1,5 +1,13 @@
 .root {
-  width: 150px;
-  height: 50px;
-  padding: 10px;
+
+}
+
+.currency {
+  font-size: var(--font-size-xl);
+}
+
+.wallet {
+  margin-top: var(--qs-3x);
+  font-size: var(--font-size-s);
+  color: var(--color-white-50);
 }
