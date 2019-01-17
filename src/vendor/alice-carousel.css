@@ -1,0 +1,13 @@
+.alice-carousel__dots-item {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-white-33);
+}
+
+.alice-carousel__dots-item.__active {
+  background-color: var(--color-white);
+}
+
+.alice-carousel__dots-item:not(:last-child) {
+  margin-right: var(--qs-2x);
+}
