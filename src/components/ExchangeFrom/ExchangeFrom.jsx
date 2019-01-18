@@ -2,10 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import exchangeActions from '../../actions/exchange';
 import CurrencySelector from '../CurrencySelector/CurrencySelector';
+import ContentEditable from 'react-contenteditable';
+
+import s from './ExchangeFrom.module.css';
+
+const MAX_LENGTH = 6;
 
 class ExchangeFrom extends Component {
+  state = { amount: '' };
+  contentEditable = React.createRef();
+
   componentDidMount() {
     const { dispatch, currencyList } = this.props;
+    document.addEventListener("keydown", this.handleKeyDown);
+
+    this.contentEditable.current.focus();
 
     dispatch(exchangeActions.updateExchangeSettings({ currencyFrom: currencyList[0] }));
   }
@@ -13,39 +24,54 @@ class ExchangeFrom extends Component {
   onCurrencySelect = (currencyFrom) => {
     const { dispatch } = this.props;
 
+    this.contentEditable.current.focus();
+
     dispatch(exchangeActions.updateExchangeSettings({ currencyFrom }));
+  };
+
+  handleKeyDown = () => {
+    this.contentEditable.current.focus();
   };
 
   onAmountInput = (event) => {
     const { dispatch } = this.props;
-    const amount = event.target.value || 0;
+    const amount = event.target.value;
+    const parsedAmount = parseFloat(amount);
+    const isValid = /^[0-9.\s]*$/.test(amount);
 
-    dispatch(exchangeActions.updateExchangeSettings({ amount }));
+    if (isValid && amount.length <= MAX_LENGTH) {
+      this.setState({ amount });
+    } else {
+      this.forceUpdate();
+    }
+
+    if (parsedAmount) {
+      dispatch(exchangeActions.updateExchangeSettings({ amount: parsedAmount }));
+    }
+
+    if (amount === '') {
+      dispatch(exchangeActions.updateExchangeSettings({ amount: 0 }));
+    }
   };
 
-  renderInput() {
-    const { amount } = this.props;
-
-    return (
-      <input
-        value={ amount.toNumber() || '' }
-        onChange={ this.onAmountInput }
-      />
-    );
-  }
-
   render() {
+    const { amount } = this.state;
     const { currencyList, currencyFrom, wallet } = this.props;
 
     return (
-      <div>
+      <div className={s.root}>
         <CurrencySelector
           wallet={wallet}
           value={currencyFrom}
           currencyList={currencyList}
           onChange={this.onCurrencySelect}
         />
-        { this.renderInput() }
+        <ContentEditable
+          className={s.amountInput}
+          html={amount}
+          innerRef={this.contentEditable}
+          onChange={this.onAmountInput}
+        />
       </div>
     );
   }
