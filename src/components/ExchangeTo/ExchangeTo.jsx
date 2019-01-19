@@ -21,8 +21,24 @@ class ExchangeTo extends Component {
     dispatch(exchangeActions.updateExchangeSettings({ currencyTo }));
   };
 
+  renderRates() {
+    const { currencyFrom, currencyTo, inProgress, rate } = this.props;
+
+    if (inProgress || !rate) {
+      return null;
+    }
+
+    return (
+      <div className={s.rate}>
+        <FormattedCurrency currency={currencyTo} value={1} precision={0} />
+        {' = '}
+        <FormattedCurrency currency={currencyFrom} value={1 / rate} precision={2} />
+      </div>
+    );
+  }
+
   render() {
-    const { currencyList, currencyFrom, currencyTo, inProgress, amount, rate, wallet } = this.props;
+    const { currencyList, currencyTo, amount, rate, wallet } = this.props;
     const value = (amount * rate).toFixed(2);
     const valueClassName = classNames(s.value, {[s.valueLong]: value.length > 7});
 
@@ -41,13 +57,7 @@ class ExchangeTo extends Component {
               : ' '
             }
           </div>
-          { !inProgress && (
-            <div className={s.rate}>
-              <FormattedCurrency currency={currencyTo} value={1} precision={0} />
-              {' = '}
-              <FormattedCurrency currency={currencyFrom} value={1 / rate} precision={2} />
-            </div>
-          )}
+          { this.renderRates() }
         </div>
       </div>
     );
