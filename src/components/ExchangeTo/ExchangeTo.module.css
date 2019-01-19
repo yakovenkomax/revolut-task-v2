@@ -1,0 +1,32 @@
+.root {
+  position: relative;
+}
+
+.amount {
+  position: absolute;
+  top: var(--qs-5x);
+  right: var(--qs-9x);
+  max-width: 300px;
+  overflow: visible;
+}
+
+.value {
+  display: flex;
+  align-items: flex-end;
+  min-height: 47px;
+  text-align: right;
+  white-space: nowrap;
+  font-size: var(--font-size-xxl);
+  color: var(--color-white);
+}
+
+.valueLong {
+  font-size: var(--font-size-xl);
+}
+
+.rate {
+  margin-top: var(--qs-3x);
+  text-align: right;
+  font-size: var(--font-size-s);
+  color: var(--color-white-50);
+}

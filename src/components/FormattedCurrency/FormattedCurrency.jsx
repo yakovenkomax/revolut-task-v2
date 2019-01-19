@@ -3,7 +3,12 @@ import { symbols } from '../../constants/symbols';
 
 class FormattedCurrency extends Component {
   render() {
-    const { currency, value = 0, precision = 2 } = this.props;
+    const { currency, value, precision = 2 } = this.props;
+
+    if (isNaN(value)) {
+      return null;
+    }
+
     const symbol = symbols[currency];
     const formattedValue = value.toFixed(precision);
 
