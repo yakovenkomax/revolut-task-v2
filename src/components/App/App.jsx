@@ -28,12 +28,8 @@ class App extends Component {
           </div>
         </header>
         <main className={s.main}>
-          <div className={s.exchange}>
-            <ExchangeFrom />
-          </div>
-          <div className={s.exchange}>
-            <ExchangeTo />
-          </div>
+          <ExchangeFrom />
+          <ExchangeTo />
         </main>
       </div>
     );
