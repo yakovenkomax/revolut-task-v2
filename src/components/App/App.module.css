@@ -12,19 +12,19 @@
 }
 
 .headerLeft {
-  flex: 1;
+  flex-basis: 25%;
   display: flex;
   justify-content: flex-start;
 }
 
 .headerCenter {
-  flex: 1;
+  flex-basis: 50%;
   display: flex;
   justify-content: center;
 }
 
 .headerRight {
-  flex: 1;
+  flex-basis: 25%;
   display: flex;
   justify-content: flex-end;
 }

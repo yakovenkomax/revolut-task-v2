@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import exchangeActions from '../../actions/exchange';
+import React from 'react';
 import CurrencySelector from '../CurrencySelector/CurrencySelector';
 import ContentEditable from 'react-contenteditable';
 
@@ -8,25 +6,24 @@ import s from './ExchangeFrom.module.css';
 
 const MAX_LENGTH = 6;
 
-class ExchangeFrom extends Component {
+class ExchangeFrom extends React.PureComponent {
   state = { amount: '' };
   contentEditable = React.createRef();
 
   componentDidMount() {
-    const { dispatch, currencyList } = this.props;
     document.addEventListener("keydown", this.handleKeyDown);
 
     this.contentEditable.current.focus();
-
-    dispatch(exchangeActions.updateExchangeSettings({ currencyFrom: currencyList[0] }));
   }
 
   onCurrencySelect = (currencyFrom) => {
-    const { dispatch } = this.props;
+    const { onChange } = this.props;
 
     this.contentEditable.current.focus();
 
-    dispatch(exchangeActions.updateExchangeSettings({ currencyFrom }));
+    if (onChange) {
+      onChange(currencyFrom);
+    }
   };
 
   handleKeyDown = () => {
@@ -34,7 +31,7 @@ class ExchangeFrom extends Component {
   };
 
   onAmountInput = (event) => {
-    const { dispatch } = this.props;
+    const { onInput } = this.props;
     const amount = event.target.value;
     const parsedAmount = parseFloat(amount);
     const isValid = /^[0-9.\s]*$/.test(amount);
@@ -45,18 +42,19 @@ class ExchangeFrom extends Component {
       this.forceUpdate();
     }
 
-    if (parsedAmount) {
-      dispatch(exchangeActions.updateExchangeSettings({ amount: parsedAmount }));
+    if (parsedAmount && onInput) {
+      onInput(parsedAmount);
     }
 
-    if (amount === '') {
-      dispatch(exchangeActions.updateExchangeSettings({ amount: 0 }));
+    if (amount === '' && onInput) {
+      onInput(0);
     }
   };
 
   render() {
     const { amount } = this.state;
-    const { currencyList, currencyFrom, wallet } = this.props;
+    const { currencyFrom, wallet } = this.props;
+    const currencyList = Object.keys(wallet);
 
     return (
       <div className={s.root}>
@@ -77,17 +75,4 @@ class ExchangeFrom extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { exchange, wallet } = state;
-  const { currencyFrom, amount } = exchange;
-  const currencyList = Object.keys(wallet);
-
-  return {
-    currencyList,
-    currencyFrom,
-    wallet,
-    amount,
-  };
-};
-
-export default connect(mapStateToProps)(ExchangeFrom);
+export default ExchangeFrom;

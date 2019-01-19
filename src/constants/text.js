@@ -1,7 +1,5 @@
-export const currencyDisplayTexts = {
-  prefix: 'You have',
-};
-
-export const ratesTexts = {
-  unavailable: 'Unavailable',
+export default {
+  currencyDisplayPrefix: 'You have',
+  unavailablePlaceholder: 'Unavailable',
+  exchangeButtonText: 'Exchange',
 };

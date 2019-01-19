@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 import CurrencyDisplay from '../CurrencyDisplay/CurrencyDisplay';
 
 import s from './CurrencySelector.module.css';
 
-class CurrencySelector extends Component {
+class CurrencySelector extends React.PureComponent {
   onChange = ({ item: index }) => {
     const { onChange, currencyList } = this.props;
 

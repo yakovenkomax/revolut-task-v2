@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import FormattedCurrency from '../FormattedCurrency/FormattedCurrency';
 import Loader from '../Loader/Loader';
 import { loaderIds } from '../../constants/ids';
-import { ratesTexts } from '../../constants/text';
+import text from '../../constants/text';
 
 import s from './ExchangeRate.module.css';
 
-class ExchangeRate extends Component {
+class ExchangeRate extends React.PureComponent {
   renderContent() {
     const { currencyFrom, currencyTo, inProgress, rate } = this.props;
 
@@ -16,7 +16,7 @@ class ExchangeRate extends Component {
     }
 
     if (!rate) {
-      return ratesTexts.unavailable;
+      return text.unavailablePlaceholder;
     }
 
     return (

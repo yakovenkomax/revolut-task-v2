@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FormattedCurrency from '../FormattedCurrency/FormattedCurrency';
-import { currencyDisplayTexts } from '../../constants/text';
+import text from '../../constants/text';
 
 import s from './CurrencyDisplay.module.css';
 
-class CurrencyDisplay extends Component {
+class CurrencyDisplay extends React.PureComponent {
   render() {
     const { currency, value } = this.props;
 
@@ -15,11 +15,11 @@ class CurrencyDisplay extends Component {
     return (
       <div className={s.root}>
         <div className={s.currency}>
-          {currency}
+          { currency }
         </div>
         <div className={s.wallet}>
-          {currencyDisplayTexts.prefix}
-          {' '}
+          { text.currencyDisplayPrefix }
+          { ' ' }
           <FormattedCurrency currency={currency} value={value}/>
         </div>
       </div>

@@ -1,30 +1,23 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import classNames from 'classnames';
-import exchangeActions from '../../actions/exchange';
 import CurrencySelector from '../CurrencySelector/CurrencySelector';
 import FormattedCurrency from '../FormattedCurrency/FormattedCurrency';
-import { loaderIds } from '../../constants/ids';
 
 import s from './ExchangeTo.module.css';
 
-class ExchangeTo extends Component {
-  componentDidMount() {
-    const { dispatch, currencyList } = this.props;
-
-    dispatch(exchangeActions.updateExchangeSettings({ currencyTo: currencyList[1] }));
-  }
-
+class ExchangeTo extends React.PureComponent {
   onCurrencySelect = (currencyTo) => {
-    const { dispatch } = this.props;
+    const { onChange } = this.props;
 
-    dispatch(exchangeActions.updateExchangeSettings({ currencyTo }));
+    if (onChange) {
+      onChange(currencyTo);
+    }
   };
 
   renderAmount() {
     const { amount, rate } = this.props;
 
-    if (!rate) {
+    if (!rate || !amount.toNumber()) {
       return null;
     }
 
@@ -33,10 +26,7 @@ class ExchangeTo extends Component {
 
     return (
       <div className={valueClassName}>
-        { amount.toNumber()
-          ? value
-          : ' '
-        }
+        { value }
       </div>
     );
   }
@@ -58,7 +48,8 @@ class ExchangeTo extends Component {
   }
 
   render() {
-    const { currencyList, currencyTo, wallet } = this.props;
+    const { currencyTo, wallet } = this.props;
+    const currencyList = Object.keys(wallet);
 
     return (
       <div className={s.root}>
@@ -77,22 +68,4 @@ class ExchangeTo extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { exchange, wallet, rates, loaders } = state;
-  const inProgress = loaders[loaderIds.RATES_UPDATE_LOADER];
-  const { currencyFrom, currencyTo, amount } = exchange;
-  const rate = rates[currencyTo] / rates[currencyFrom];
-  const currencyList = Object.keys(wallet);
-
-  return {
-    currencyList,
-    currencyFrom,
-    currencyTo,
-    inProgress,
-    wallet,
-    amount,
-    rate,
-  };
-};
-
-export default connect(mapStateToProps)(ExchangeTo);
+export default ExchangeTo;

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { symbols } from '../../constants/symbols';
 
-class FormattedCurrency extends Component {
+class FormattedCurrency extends React.PureComponent {
   render() {
     const { currency, value, precision = 2 } = this.props;
 

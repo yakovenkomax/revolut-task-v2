@@ -1,5 +1,6 @@
 .root {
   position: relative;
+  height: 47px;
 }
 
 .amount {
@@ -24,9 +25,15 @@
   font-size: var(--font-size-xl);
 }
 
+.value:not(:empty)::before {
+  content: '+';
+}
+
 .rate {
   margin-top: var(--qs-3x);
   text-align: right;
   font-size: var(--font-size-s);
   color: var(--color-white-50);
 }
+
+

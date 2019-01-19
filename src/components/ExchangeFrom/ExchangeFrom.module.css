@@ -25,5 +25,5 @@
 }
 
 .amountInput:not(:empty)::before {
-  content: '+';
+  content: '-';
 }

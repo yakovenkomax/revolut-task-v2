@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from  './reducers';
 import { initialWalletState } from './reducers/wallet';
 import { initialRatesState } from './reducers/rates';
-import { initialExchangeState } from './reducers/exchange';
+import { initialExchangeState } from './reducers/form';
 import { initialLoadersState } from './reducers/loaders';
 
 const initialState = {

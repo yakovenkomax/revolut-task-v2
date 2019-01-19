@@ -2,15 +2,15 @@ import { Decimal } from 'decimal.js';
 import actions from '../constants/actions';
 
 const FAKE_WALLET = {
-  USD: new Decimal(123.4),
-  GBP: new Decimal(876.5430),
   EUR: new Decimal(567.89),
+  GBP: new Decimal(876.5430),
+  USD: new Decimal(123.4),
 };
 
 export const initialWalletState = {
-  USD: new Decimal(0),
-  GBP: new Decimal(0),
   EUR: new Decimal(0),
+  GBP: new Decimal(0),
+  USD: new Decimal(0),
   ...FAKE_WALLET,
 };
 
