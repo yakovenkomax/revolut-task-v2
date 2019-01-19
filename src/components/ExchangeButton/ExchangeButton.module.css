@@ -1,0 +1,18 @@
+.root {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  display: inline-flex;
+  padding: 0;
+  background-color: transparent;
+  font-size: var(--font-size-m);
+  color: var(--color-white);
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+}
+
+.disabled {
+  color: var(--color-white-33);
+  cursor: not-allowed;
+}

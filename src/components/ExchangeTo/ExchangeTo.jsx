@@ -4,9 +4,9 @@ import classNames from 'classnames';
 import exchangeActions from '../../actions/exchange';
 import CurrencySelector from '../CurrencySelector/CurrencySelector';
 import FormattedCurrency from '../FormattedCurrency/FormattedCurrency';
+import { loaderIds } from '../../constants/ids';
 
 import s from './ExchangeTo.module.css';
-import { loaderIds } from '../../constants/ids';
 
 class ExchangeTo extends Component {
   componentDidMount() {
@@ -20,6 +20,26 @@ class ExchangeTo extends Component {
 
     dispatch(exchangeActions.updateExchangeSettings({ currencyTo }));
   };
+
+  renderAmount() {
+    const { amount, rate } = this.props;
+
+    if (!rate) {
+      return null;
+    }
+
+    const value = (amount * rate).toFixed(2);
+    const valueClassName = classNames(s.value, {[s.valueLong]: value.length > 7});
+
+    return (
+      <div className={valueClassName}>
+        { amount.toNumber()
+          ? value
+          : ' '
+        }
+      </div>
+    );
+  }
 
   renderRates() {
     const { currencyFrom, currencyTo, inProgress, rate } = this.props;
@@ -38,9 +58,7 @@ class ExchangeTo extends Component {
   }
 
   render() {
-    const { currencyList, currencyTo, amount, rate, wallet } = this.props;
-    const value = (amount * rate).toFixed(2);
-    const valueClassName = classNames(s.value, {[s.valueLong]: value.length > 7});
+    const { currencyList, currencyTo, wallet } = this.props;
 
     return (
       <div className={s.root}>
@@ -51,12 +69,7 @@ class ExchangeTo extends Component {
           onChange={this.onCurrencySelect}
         />
         <div className={s.amount}>
-          <div className={valueClassName}>
-            { amount.toNumber()
-              ? value
-              : ' '
-            }
-          </div>
+          { this.renderAmount() }
           { this.renderRates() }
         </div>
       </div>
@@ -72,11 +85,11 @@ const mapStateToProps = (state) => {
   const currencyList = Object.keys(wallet);
 
   return {
-    wallet,
     currencyList,
     currencyFrom,
     currencyTo,
     inProgress,
+    wallet,
     amount,
     rate,
   };

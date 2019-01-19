@@ -83,9 +83,9 @@ const mapStateToProps = (state) => {
   const currencyList = Object.keys(wallet);
 
   return {
-    wallet,
     currencyList,
     currencyFrom,
+    wallet,
     amount,
   };
 };
