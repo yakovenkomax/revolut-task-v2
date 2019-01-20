@@ -13,13 +13,13 @@ class ExchangeFrom extends React.PureComponent {
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeyDown);
 
-    this.contentEditable.current.focus();
+    this.focusInput();
   }
 
   onCurrencySelect = (currencyFrom) => {
     const { onChange } = this.props;
 
-    this.contentEditable.current.focus();
+    this.focusInput();
 
     if (onChange) {
       onChange(currencyFrom);
@@ -27,8 +27,39 @@ class ExchangeFrom extends React.PureComponent {
   };
 
   handleKeyDown = () => {
-    this.contentEditable.current.focus();
+    this.focusInput();
   };
+
+  focusInput() {
+    const input = this.contentEditable.current;
+
+    if (input === document.activeElement) {
+      return;
+    }
+
+    this.moveCaretToEnd(input);
+  }
+
+  moveCaretToEnd(el) {
+    el.focus();
+    if (typeof window.getSelection !== 'undefined' && typeof document.createRange !== 'undefined') {
+      const range = document.createRange();
+
+      range.selectNodeContents(el);
+      range.collapse(false);
+
+      const selection = window.getSelection();
+
+      selection.removeAllRanges();
+      selection.addRange(range);
+    } else if (typeof document.body.createTextRange !== 'undefined') {
+      const textRange = document.body.createTextRange();
+
+      textRange.moveToElementText(el);
+      textRange.collapse(false);
+      textRange.select();
+    }
+  }
 
   onAmountInput = (event) => {
     const { onInput } = this.props;
