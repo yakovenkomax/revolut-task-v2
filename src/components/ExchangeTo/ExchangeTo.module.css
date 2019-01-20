@@ -1,5 +1,6 @@
 .root {
   position: relative;
+  background-color: var(--color-black-20);
 }
 
 .amount {
@@ -9,6 +10,7 @@
   height: 47px;
   max-width: 300px;
   overflow: visible;
+  pointer-events: none;
 }
 
 .value {

@@ -2,7 +2,7 @@
   width: 350px;
   margin: auto;
   background: radial-gradient(var(--color-blue-light), var(--color-blue-dark));
-  box-shadow: 0 15px 15px var(--color-black-5), 0 0 30px var(--color-black-33);
+  box-shadow: 0 15px 15px var(--color-black-5), 0 0 30px var(--color-black-20);
 }
 
 .header {
