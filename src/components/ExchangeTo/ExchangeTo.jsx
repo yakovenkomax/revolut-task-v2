@@ -16,17 +16,13 @@ class ExchangeTo extends React.PureComponent {
 
   renderAmount() {
     const { amount, rate } = this.props;
-
-    if (!rate || !amount.toNumber()) {
-      return null;
-    }
-
+    const isValidValue = Boolean(rate && amount.toNumber());
     const value = (amount * rate).toFixed(2);
     const valueClassName = classNames(s.value, {[s.valueLong]: value.length > 7});
 
     return (
       <div className={valueClassName}>
-        { value }
+        { isValidValue && value }
       </div>
     );
   }

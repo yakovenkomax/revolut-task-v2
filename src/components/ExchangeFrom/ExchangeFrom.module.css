@@ -7,7 +7,7 @@
   justify-content: flex-end;
   text-align: right;
   position: absolute;
-  top: var(--qs-5x);
+  top: var(--qs-7x);
   right: var(--qs-9x);
   border: 0;
   border-bottom: 1px solid transparent; /* invisible caret fix */

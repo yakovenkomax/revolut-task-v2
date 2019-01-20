@@ -1,12 +1,12 @@
 .root {
   position: relative;
-  height: 47px;
 }
 
 .amount {
   position: absolute;
-  top: var(--qs-5x);
+  top: var(--qs-7x);
   right: var(--qs-9x);
+  height: 47px;
   max-width: 300px;
   overflow: visible;
 }
