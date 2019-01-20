@@ -69,16 +69,16 @@ class ExchangeFrom extends React.PureComponent {
 
     if (isValid && amount.length <= MAX_LENGTH) {
       this.setState({ amount });
+
+      if (parsedAmount && onInput) {
+        onInput(parsedAmount);
+      }
+
+      if (amount === '' && onInput) {
+        onInput(0);
+      }
     } else {
       this.forceUpdate();
-    }
-
-    if (parsedAmount && onInput) {
-      onInput(parsedAmount);
-    }
-
-    if (amount === '' && onInput) {
-      onInput(0);
     }
   };
 
