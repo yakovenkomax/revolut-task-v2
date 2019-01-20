@@ -7,7 +7,7 @@ export const isExchangeAvailable = (currencyFrom, currencyTo, wallet, amount, ra
     return false;
   }
 
-  if (!amount) {
+  if (!amount.toNumber()) {
     return false;
   }
 
