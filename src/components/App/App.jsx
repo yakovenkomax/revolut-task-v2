@@ -10,12 +10,12 @@ import ratesActions from '../../actions/rates';
 import walletActions from '../../actions/wallet';
 import exchangeActions from '../../actions/form';
 
-import { isExchangeAvailable } from '../../util/exchangeHelpers';
+import { calculateRate, isExchangeAvailable } from '../../util/helpers';
 
 import text from '../../constants/text';
+import { loaderIds } from '../../constants/ids';
 
 import s from './App.module.css';
-import { loaderIds } from '../../constants/ids';
 
 class App extends React.PureComponent {
   componentDidMount() {
@@ -40,9 +40,7 @@ class App extends React.PureComponent {
   };
 
   render() {
-    const { currencyFrom, currencyTo, inProgress, wallet, amount, rates } = this.props;
-    const isButtonDisabled = !isExchangeAvailable(currencyFrom, currencyTo, wallet, amount, rates);
-    const rate = rates[currencyTo] / rates[currencyFrom];
+    const { currencyFrom, currencyTo, inProgress, enabled, wallet, amount, rate } = this.props;
 
     return (
       <form
@@ -59,7 +57,7 @@ class App extends React.PureComponent {
             <Button
               type="submit"
               text={text.exchangeButtonText}
-              disabled={isButtonDisabled}
+              disabled={!enabled}
             />
           </div>
         </header>
@@ -90,14 +88,17 @@ const mapStateToProps = (state) => {
   const { exchange, wallet, rates, loaders } = state;
   const { currencyFrom, currencyTo, amount } = exchange;
   const inProgress = loaders[loaderIds.RATES_UPDATE_LOADER];
+  const rate = calculateRate(rates, currencyFrom, currencyTo);
+  const enabled = isExchangeAvailable(currencyFrom, currencyTo, wallet, amount, rates);
 
   return {
     currencyFrom,
     currencyTo,
     inProgress,
+    enabled,
     wallet,
     amount,
-    rates
+    rate,
   };
 };
 

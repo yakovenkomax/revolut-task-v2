@@ -24,7 +24,7 @@ export default (state = initialWalletState, action) => {
       newState = { ...state };
 
       newState[currencyFrom] = newState[currencyFrom].minus(amount);
-      newState[currencyTo] = newState[currencyTo].plus(amount * rate);
+      newState[currencyTo] = newState[currencyTo].plus(amount.mul(rate));
 
       return newState;
     }

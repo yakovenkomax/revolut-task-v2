@@ -1,4 +1,4 @@
-import { isExchangeAvailable } from './exchangeHelpers';
+import { isExchangeAvailable } from './helpers';
 import { rates1, rates2, wallet1, wallet2 } from '../test/fixtures';
 import { Decimal } from 'decimal.js';
 
@@ -26,6 +26,12 @@ describe('exchangeHelpers util', () => {
       const isAvailable = isExchangeAvailable("EUR", "GBP", wallet2, new Decimal(1), rates2);
 
       expect(isAvailable).toEqual(false);
+    });
+
+    it('should return true on valid input', () => {
+      const isAvailable = isExchangeAvailable("EUR", "GBP", wallet1, new Decimal(1), rates2);
+
+      expect(isAvailable).toEqual(true);
     });
   });
 });

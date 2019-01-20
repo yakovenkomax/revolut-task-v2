@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import CurrencySelector from '../CurrencySelector/CurrencySelector';
 import FormattedCurrency from '../FormattedCurrency/FormattedCurrency';
+import { isValidAmount, isValidRate } from '../../util/helpers';
 
 import s from './ExchangeTo.module.css';
 
@@ -16,13 +17,19 @@ class ExchangeTo extends React.PureComponent {
 
   renderAmount() {
     const { amount, rate } = this.props;
-    const isValidValue = Boolean(rate && amount.toNumber());
-    const value = (amount * rate).toFixed(2);
+
+    if (!isValidRate(rate) || !isValidAmount(amount)) {
+      return (
+        <div className={s.value}/>
+      );
+    }
+
+    const value = amount.mul(rate).toFixed(2);
     const valueClassName = classNames(s.value, {[s.valueLong]: value.length > 7});
 
     return (
       <div className={valueClassName}>
-        { isValidValue && value }
+        { value }
       </div>
     );
   }
