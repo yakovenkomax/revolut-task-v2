@@ -11,7 +11,7 @@ export const isExchangeAvailable = (currencyFrom, currencyTo, wallet, amount, ra
     return false;
   }
 
-  if (wallet[currencyFrom] < amount) {
+  if (parseFloat(wallet[currencyFrom]) < amount.toNumber()) {
     return false;
   }
 
