@@ -8,7 +8,7 @@
 .header {
   display: flex;
   align-items: center;
-  padding: var(--qs-4x) var(--qs-2x) var(--qs-2x);
+  padding: var(--qs-4x) var(--qs-2x) var(--qs-5x);
 }
 
 .headerLeft {

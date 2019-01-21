@@ -31,7 +31,9 @@
   --border-radius: 7px;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 

@@ -1,7 +1,7 @@
 .root {
   position: relative;
-  height: 175px;
-  padding: var(--qs-7x) 0;
+  height: 165px;
+  padding: var(--qs-4x) 0;
   cursor: grab;
   user-select: none;
 }
