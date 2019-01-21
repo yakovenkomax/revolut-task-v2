@@ -17,10 +17,18 @@ import { loaderIds } from '../../constants/ids';
 
 import s from './App.module.css';
 
+const FETCH_INTERVAL = 10000; // ms
+
 class App extends React.PureComponent {
   componentDidMount() {
-    this.props.dispatch(ratesActions.update());
+    this.updateRates();
+
+    setInterval(this.updateRates, FETCH_INTERVAL);
   }
+
+  updateRates = () => {
+    this.props.dispatch(ratesActions.update());
+  };
 
   handleCurrencyFromChange = (currencyFrom) => {
     this.props.dispatch(exchangeActions.updateForm({ currencyFrom }));
