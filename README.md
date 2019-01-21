@@ -12,7 +12,7 @@ yarn add -g serve
 serve -s build
 ```
 
-'* to succesfully pull currency rates disable CORS in your browser:
+&ast; to succesfully pull currency rates disable CORS in your browser:
 `open -a Google\ Chrome --args --disable-web-security --user-data-dir`
 
 ## Description
