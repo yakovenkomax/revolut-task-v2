@@ -20,9 +20,10 @@ serve -s build
 Open the current Revolut app, on either iOS or Android, and navigate to the exchange screen.
 If the app is not available in your country you can observe how application works in video [https://youtu.be/c0zPSiKYipc?t=29s](https://youtu.be/c0zPSiKYipc?t=29s). (Exchange screen is on the 29th second of the video)
 Implement *functionality* of this screen in your own custom web widget using FX rates from either source:
-a) [http://www.ecb.int/stats/exchange/eurofxref/html/index.en.html#dev](http://www.ecb.int/stats/exchange/eurofxref/html/index.en.html#dev)
-b) [https://openexchangerates.org/](https://openexchangerates.org/)
-c) Your preferred source of FX rates
+
+1. [http://www.ecb.int/stats/exchange/eurofxref/html/index.en.html#dev](http://www.ecb.int/stats/exchange/eurofxref/html/index.en.html#dev)
+2. [https://openexchangerates.org/](https://openexchangerates.org/)
+3. Your preferred source of FX rates
 
 ## Explicit Requirements
 
