@@ -10,7 +10,9 @@ type CurrencyElement = {
 
 export const fetchRates = async () => {
   try {
-    const result = await fetch('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml');
+    const url = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml';
+    const CORSProxy = 'https://cors-anywhere.herokuapp.com';
+    const result = await fetch(`${CORSProxy}/${url}`);
     const resultXML = await result.text();
     const resultObject = convert.xml2js(resultXML);
     const ratesObjectsArray = resultObject.elements[0].elements[2].elements[0].elements;

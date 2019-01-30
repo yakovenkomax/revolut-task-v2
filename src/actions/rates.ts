@@ -15,8 +15,12 @@ export type UpdateRatesAction = {
 
 type UpdateRatesThunkAction = ThunkAction<void, AppState, null, UpdateRatesAction>;
 
-const updateRates = (): UpdateRatesThunkAction => async (dispatch: Dispatch) => {
-  dispatch(startLoader({ loaderId: loaderIds.RATES_UPDATE_LOADER }));
+const updateRates = (): UpdateRatesThunkAction => async (dispatch: Dispatch, getState) => {
+  const ratesLoaded = Object.keys(getState().rates).length > 1;
+
+  if (!ratesLoaded) {
+    dispatch(startLoader({ loaderId: loaderIds.RATES_UPDATE_LOADER }));
+  }
   try {
     const rates = await fetchRates();
 
@@ -27,9 +31,11 @@ const updateRates = (): UpdateRatesThunkAction => async (dispatch: Dispatch) => 
       },
     });
   } catch (error) {
-
+    console.log(error);
   } finally {
-    dispatch(stopLoader({ loaderId: loaderIds.RATES_UPDATE_LOADER }));
+    if (!ratesLoaded) {
+      dispatch(stopLoader({ loaderId: loaderIds.RATES_UPDATE_LOADER }));
+    }
   }
 };
 

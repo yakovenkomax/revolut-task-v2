@@ -12,9 +12,6 @@ yarn add -g serve
 serve -s build
 ```
 
-&ast; to succesfully pull currency rates disable CORS in your browser:
-`open -a Google\ Chrome --args --disable-web-security --user-data-dir`
-
 ## Description
 
 Open the current Revolut app, on either iOS or Android, and navigate to the exchange screen.
