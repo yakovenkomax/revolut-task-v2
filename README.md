@@ -2,6 +2,8 @@
 
 [Live Demo](https://yakovenkomax.github.io/revolut-task-v2/)
 
+Result: 👎 (Reason: crashes on '.' input as a first character, not covered by unit tests)
+
 <p align="center">
   <img width="400" alt="Preview" src="https://user-images.githubusercontent.com/5172360/51500480-278d6080-1ddf-11e9-990d-33b66b089735.gif">
 </p>
